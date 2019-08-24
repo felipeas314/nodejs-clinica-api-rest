@@ -1,3 +1,3 @@
-const server = require('./express');
+const {App} = require('./express');
 
-server.listen(4005);
+App.listen(4005);
