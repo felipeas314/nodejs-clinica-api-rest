@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
+const yup = require('yup');
 
-const userSchema = new mongoose.Schema({
+const pacienteSchema = new mongoose.Schema({
 
-  name: {
+  nome: {
     type: String,
     required: true,
   },
@@ -11,12 +12,25 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  password: {
-    type: String,
-    required: true,
-  },
+  endereco: {
+    rua: {
+      type: String
+    },
+    numero: {
+      type: String
+    },  
+    bairro: {
+      type: String
+    }
+  }
 });
 
-const user = mongoose.model("user", userSchema);
+const paciente = mongoose.model("paciente", pacienteSchema);
 
-module.exports = user;
+let pacienteValidation = yup.object().shape({
+  nome: yup.string().required(),
+  email: yup.string().required()
+});
+
+exports.Paciente = paciente;
+exports.PacienteValidation = pacienteValidation;

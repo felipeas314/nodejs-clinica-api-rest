@@ -2,6 +2,8 @@ const express = require("express");
 
 const routes = require("./routes");
 
+require("./config/mongoose");
+
 class Express {
   constructor() {
     this.app = express();
