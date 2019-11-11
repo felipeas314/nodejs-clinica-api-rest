@@ -6,7 +6,8 @@ const medicoSchema = new mongoose.Schema({
         required: true
     },
     especialidade: {
-        
+      type: String,
+      required: true  
     }
 });
 
