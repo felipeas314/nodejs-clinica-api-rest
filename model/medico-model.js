@@ -9,6 +9,10 @@ const medicoSchema = new mongoose.Schema({
     especialidade: {
       type: String,
       required: true  
+    },
+    preco_por_consulta: {
+      type: Number,
+      require: true
     }
 });
 

@@ -2,6 +2,13 @@ const mongoose = require('mongoose');
 
 const consultaSchema = new mongoose.Schema({
 
+    sintomas: [
+        {
+            descricao: {
+                type: String
+            }
+        }
+    ],
     receita: [
         {
             remedio: {
@@ -33,6 +40,17 @@ const consultaSchema = new mongoose.Schema({
     },
     data_da_consulta: {
         type: Date,
+        required: true
+    },
+    confirmada: {
+        type: Boolean,
+        default: false
+    },
+    paciente_faltou: {
+        type: Boolean
+    },
+    particula: {
+        type: Boolean,
         required: true
     }
 });

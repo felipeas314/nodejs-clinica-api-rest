@@ -22,6 +22,14 @@ const pacienteSchema = new mongoose.Schema({
     bairro: {
       type: String
     }
+  },
+  celular: {
+    type: String,
+    required: true
+  },
+  telefone_fixo: {
+    type: String,
+    required: true
   }
 });
 
