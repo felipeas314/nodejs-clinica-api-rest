@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const yup = require('yup');
 
 const medicoSchema = new mongoose.Schema({
     nome:{
@@ -12,5 +13,10 @@ const medicoSchema = new mongoose.Schema({
 });
 
 const medico = mongoose.model('medico',medicoSchema);
+let medicoValidation = yup.object().shape({
+  nome: yup.string().required(),
+  especialidade: yup.string().required()
+});
 
-module.exports = medico;
+module.Medico = medico;
+module.MedicoValidation = medicoValidation;

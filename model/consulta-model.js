@@ -6,6 +6,12 @@ const consultaSchema = new mongoose.Schema({
         {
             remedio: {
                 type: String
+            },
+            mg: {
+                type: String
+            },
+            vezes_por_dia: {
+                type: String
             }
         }
     ],
@@ -31,6 +37,6 @@ const consultaSchema = new mongoose.Schema({
     }
 });
 
-const consulta = mongoose.model('consulta',consultaSchema);
+const consulta = mongoose.model('consulta', consultaSchema);
 
 module.exports = consulta;
