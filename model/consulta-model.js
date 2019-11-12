@@ -8,5 +8,29 @@ const consultaSchema = new mongoose.Schema({
                 type: String
             }
         }
-    ]
+    ],
+    paciente: {
+        id: {
+            type: String
+        },
+        nome: {
+            type: String
+        }
+    },
+    medico: {
+        id: {
+            type: String
+        },
+        nome: {
+            type: String
+        }
+    },
+    data_da_consulta: {
+        type: Date,
+        required: true
+    }
 });
+
+const consulta = mongoose.model('consulta',consultaSchema);
+
+module.exports = consulta;
