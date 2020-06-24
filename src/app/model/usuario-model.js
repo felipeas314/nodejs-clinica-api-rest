@@ -1,31 +1,33 @@
-const mongoose = require("mongoose");
-const yup = require('yup');
+const Sequelize = require('sequelize');
+const Model = Sequelize.Model;
 
-const usuarioSchema = new mongoose.Schema({
+const connection = require('../database/postgresql');
 
-  nome: {
-    type: String,
-    required: true,
+class Usuario extends Model { }
+
+Usuario.init(
+  {
+    id: {
+      type: Sequelize.UUIDV4,
+      primaryKey: true
+    },
+    nome: {
+      type: Sequelize.STRING
+    },
+    email: {
+      type: Sequelize.STRING
+    },
+    senha: {
+      type: Sequelize.STRING
+    },
+    role: {
+      type: Sequelize.STRING
+    },
   },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  password: {
-      type: String,
-      required: true
+  {
+    sequelize: connection,
+    modelName: 'usuario'
   }
+)
 
-});
-
-const usuario = mongoose.model("usuario", usuarioSchema);
-
-let usuarioValidation = yup.object().shape({
-  nome: yup.string().required(),
-  email: yup.string().required(),
-  password: yup.string().required()
-});
-
-exports.Usuario = usuario;
-exports.UsuarioValidation = usuarioValidation;
+module.exports = Usuario;
