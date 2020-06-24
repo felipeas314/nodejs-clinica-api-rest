@@ -3,7 +3,7 @@ let {App} = require('../express');
 let request = require('supertest')(App);
 let expect = chai.expect;
 
-const {Paciente} = require('../model/paciente-model');
+const {Paciente} = require('../app/model/paciente-model');
 
 describe("########## PACIENTE ##########", done => {
 

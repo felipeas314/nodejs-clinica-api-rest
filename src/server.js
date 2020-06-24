@@ -1,6 +1,6 @@
 const express = require("express");
 const routes = require("./routes");
-let mongoose = require("./config/mongoose");
+let mongoose = require("./app/database/postgresql");
 
 app = express();
 app.use(routes);
