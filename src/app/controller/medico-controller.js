@@ -1,22 +1,37 @@
-const { Medico, medicoValidation } = require('../model/medico-model');
+const { Medico, MedicoValidation } = require('../model/medico-model');
 
 async function listaMedicos(req, res) {
 
-    const { page, size } = req.params;
+    const { page = 1, size = 10 } = req.params;
 
-    const medicos = await Medico.find();
-    res.status(200).json({ data: [medicos] });
+    const offset = (page - 1) * size;
+
+    const medicos = await Medico.findAndCountAll(
+        {
+            offset,
+            size
+        }
+    );
+
+    res.status(200).json({
+        content: medicos.rows,
+        status: 'OK',
+        quantity: medicos.count
+    });
 }
 
 async function adicionaMedico(req, res) {
 
-    if (!(medicoValidation.isValid(req.body))) {
+    if (!(MedicoValidation.isValid(req.body))) {
         return res.status(400).json({ error: 'Validação falhou' })
     }
 
     const medico = await Medico.create(req.body);
 
-    return res.status(202).json({ data: [medico] });
+    return res.status(201).json({
+        content: medico,
+        status: 'CREATED'
+    });
 }
 
 async function buscaMedicoPorId(req, res) {

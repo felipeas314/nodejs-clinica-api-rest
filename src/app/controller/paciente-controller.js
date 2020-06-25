@@ -1,4 +1,4 @@
-const { Paciente, PacienteValidation } = require('../model/paciente-model');
+const { Paciente, PacienteValidation } = require('../model/medico-model');
 
 async function listaPacientes(req, res) {
 

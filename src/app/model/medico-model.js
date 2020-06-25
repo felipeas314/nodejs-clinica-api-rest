@@ -1,26 +1,39 @@
-const mongoose = require('mongoose');
+const Sequelize = require('sequelize');
+const Model = Sequelize.Model;
 const yup = require('yup');
 
-const medicoSchema = new mongoose.Schema({
-    nome:{
-        type: String,
-        required: true
-    },
-    especialidade: {
-      type: String,
-      required: true  
-    },
-    preco_por_consulta: {
-      type: Number,
-      require: true
-    }
-});
+const connection = require('../database/postgresql');
 
-const medico = mongoose.model('medico',medicoSchema);
+class Medico extends Model { }
+
+Medico.init(
+  {
+    id: {
+      type: Sequelize.UUID,
+      primaryKey: true,
+      allowNull: false,
+      defaultValue: Sequelize.UUIDV4
+    },
+    nome: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
+    email: {
+      type: Sequelize.STRING,
+      allowNull: false
+    }
+  },
+  {
+    sequelize: connection,
+    tableName: 'medicos'
+  }
+)
+
+
 let medicoValidation = yup.object().shape({
   nome: yup.string().required(),
-  especialidade: yup.string().required()
+  email: yup.string().required()
 });
 
-module.Medico = medico;
-module.MedicoValidation = medicoValidation;
+exports.Medico = Medico;
+exports.MedicoValidation = medicoValidation;
