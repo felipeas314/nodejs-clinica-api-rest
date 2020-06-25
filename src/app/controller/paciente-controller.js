@@ -2,10 +2,20 @@ const { Paciente, PacienteValidation } = require('../model/paciente-model');
 
 async function listaPacientes(req, res) {
 
-  const { page, size } = req.params;
+  const { page = 1, size = 10 } = req.query;
 
-  const pacientes = await Paciente.find();
-  res.status(200).json(pacientes);
+  const offset = (page - 1) * size;
+
+  const pacientes = await Paciente.findAndCountAll({
+    offset,
+    size
+  });
+
+  res.status(200).json({
+    content: pacientes.rows,
+    status: 'OK',
+    quatity: pacientes.count
+  });
 }
 
 async function adicionaPaciente(req, res) {

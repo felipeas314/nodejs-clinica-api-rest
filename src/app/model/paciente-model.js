@@ -9,11 +9,16 @@ class Paciente extends Model { }
 Paciente.init(
   {
     id: {
-      type: Sequelize.UUIDV4,
+      type: Sequelize.UUID,
       primaryKey: true,
+      allowNull: false,
+      defaultValue: Sequelize.UUIDV4
+    },
+    nome: {
+      type: Sequelize.STRING,
       allowNull: false
     },
-    name: {
+    email: {
       type: Sequelize.STRING,
       allowNull: false
     }

@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --exit",
-    "start": ""
+    "start": "",
+    "dev": "nodemon src/init.js"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +24,7 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^6.2.0",
+    "nodemon": "^2.0.4",
     "supertest": "^4.0.2"
   }
 }
