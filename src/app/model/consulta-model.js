@@ -27,7 +27,8 @@ Consulta.init(
     },
     {
         sequelize: connection,
-        tableName: 'consultas'
+        tableName: 'consultas',
+        timestamps: false
     }
 )
 

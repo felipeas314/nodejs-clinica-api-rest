@@ -1,5 +1,7 @@
 const { App } = require('./server');
+const config = require('config');
+const PORT = config.get('server.port');
 
-App.listen(4006,() => {
+App.listen(PORT, () => {
   console.log("Server up")
 });
