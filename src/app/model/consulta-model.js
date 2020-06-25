@@ -1,60 +1,45 @@
-const mongoose = require('mongoose');
+const Sequelize = require('sequelize');
+const Model = Sequelize.Model;
 
-const consultaSchema = new mongoose.Schema({
+const connection = require('../database/postgresql');
 
-    sintomas: [
-        {
-            descricao: {
-                type: String
-            }
-        }
-    ],
-    receita: [
-        {
-            remedio: {
-                type: String
-            },
-            mg: {
-                type: String
-            },
-            vezes_por_dia: {
-                type: String
-            }
-        }
-    ],
-    paciente: {
+const { Paciente } = require('../model/paciente-model');
+const { Medico } = require('../model/medico-model');
+
+class Consulta extends Model { }
+
+Consulta.init(
+    {
         id: {
-            type: String
+            type: Sequelize.UUID,
+            primaryKey: true,
+            allowNull: false,
+            defaultValue: Sequelize.UUIDV4
         },
-        nome: {
-            type: String
+        confirmou: {
+            type: Sequelize.BOOLEAN,
+            defaultValue: false
+        },
+        desmarcou: {
+            type: Sequelize.BOOLEAN,
+            defaultValue: false
         }
     },
-    medico: {
-        id: {
-            type: String
-        },
-        nome: {
-            type: String
-        }
-    },
-    data_da_consulta: {
-        type: Date,
-        required: true
-    },
-    confirmada: {
-        type: Boolean,
-        default: false
-    },
-    paciente_faltou: {
-        type: Boolean
-    },
-    particula: {
-        type: Boolean,
-        required: true
+    {
+        sequelize: connection,
+        tableName: 'consultas'
+    }
+)
+
+Consulta.belongsTo(Paciente, {
+    foreignKey: {
+        name: 'paciente_id'
+    }
+});
+Consulta.belongsTo(Medico, {
+    foreignKey: {
+        name: 'medico_id'
     }
 });
 
-const consulta = mongoose.model('consulta', consultaSchema);
-
-module.exports = consulta;
+exports.Consulta = Consulta;

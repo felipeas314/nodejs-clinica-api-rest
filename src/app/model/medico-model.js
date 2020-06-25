@@ -25,7 +25,8 @@ Medico.init(
   },
   {
     sequelize: connection,
-    tableName: 'medicos'
+    tableName: 'medicos',
+    timestamps: false
   }
 )
 
