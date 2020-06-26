@@ -8,8 +8,10 @@ class Usuario extends Model { }
 Usuario.init(
   {
     id: {
-      type: Sequelize.UUIDV4,
-      primaryKey: true
+      type: Sequelize.UUID,
+      primaryKey: true,
+      allowNull: false,
+      defaultValue: Sequelize.UUIDV4
     },
     nome: {
       type: Sequelize.STRING
@@ -30,4 +32,4 @@ Usuario.init(
   }
 )
 
-module.exports = Usuario;
+exports.Usuario = Usuario;
