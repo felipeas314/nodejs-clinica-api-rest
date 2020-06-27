@@ -7,6 +7,13 @@ const { adicionaMedico, listaMedicos, removeDoctor, findDoctorById, updateDoctor
 const { marcarConsulta, listaTodasAsConsultas } = require('./app/controller/consulta-controller');
 const { criaUsuario, listaUsuarios } = require('./app/controller/usuario-controller');
 
+routes.get('/health', (req, res) => {
+  res.status(200).json({
+    message: 'Server Up.',
+    date: new Date()
+  });
+});
+
 routes.get("/doctors", listaMedicos);
 
 //Precisa logar no sistema
