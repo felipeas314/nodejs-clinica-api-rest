@@ -34,17 +34,21 @@ async function adicionaMedico(req, res) {
     });
 }
 
-async function buscaMedicoPorId(req, res) {
+async function findDoctorById(req, res) {
 
     const { id } = req.params;
 
-    const medico = Medico.findById(id);
+    const medico = await Medico.findOne({ where: { id } });
 
     if (!medico) {
         return res.status(404).json({ msg: 'Not found' });
     }
 
-    res.status(200).json({ data: [medico] });
+    res.status(200).json({
+        data: medico,
+        status: 'OK',
+        date: new Date()
+    });
 }
 
 async function atualizaMedico(req, res) {
@@ -62,11 +66,14 @@ async function removeDoctor(req, res) {
 
     await Medico.remo
 
-    return res.status(200).json({ msg: 'Success' });
+    return res.status(200).json({ 
+        msg: 'Success', 
+        date: new Date()
+    });
 }
 
 exports.listaMedicos = listaMedicos;
 exports.adicionaMedico = adicionaMedico;
 exports.removeDoctor = removeDoctor;
-exports.buscaMedicoPorId = buscaMedicoPorId;
+exports.findDoctorById = findDoctorById;
 exports.atualizaMedico = atualizaMedico;
