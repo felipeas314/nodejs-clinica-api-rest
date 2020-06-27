@@ -1,5 +1,5 @@
 const request = require('supertest')
-const server = require('../server');
+const { App } = require('../server');
 
 describe('##### HEALTH #####', () => {
 
@@ -8,7 +8,7 @@ describe('##### HEALTH #####', () => {
   });
 
   it('----- HEALTH -----', async done => {
-    const res = await request(server).get('/api/health');
+    const res = await request(App).get('/api/health');
     expect(res.statusCode).toEqual(200);
     //expect(res.body).toHaveProperty('post')
     done();
