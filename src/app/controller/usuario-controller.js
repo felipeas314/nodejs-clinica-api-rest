@@ -1,6 +1,5 @@
 const { Usuario } = require('../model/usuario-model');
 const bcrypt = require('bcrypt');
-const { listaTodasAsConsultas } = require('./consulta-controller');
 
 async function criaUsuario(req, res) {
 
@@ -15,7 +14,7 @@ async function criaUsuario(req, res) {
   if (verificaEmail) {
     return res.status(400).json({
       status: 'BAD_REQUEST',
-      message: 'Esse email já está em uso',
+      message: 'This email is already in use',
     });
   }
 
@@ -42,7 +41,7 @@ async function listaUsuarios(req, res) {
 
   res.status(200).json({
     status: 'OK',
-    mensagem: 'Lista de usuários',
+    mensagem: 'List of users',
     quantity: usuarios.count,
     content: usuarios.rows
   })

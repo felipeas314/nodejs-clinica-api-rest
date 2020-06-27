@@ -51,22 +51,22 @@ async function atualizaMedico(req, res) {
     res.json('ok');
 }
 
-async function removeMedico(req, res) {
+async function removeDoctor(req, res) {
     const { id } = req.params;
 
-    const medico = Medico.findById(id);
+    const medico = Medico.destroy({ where: { id } });
 
     if (!medico) {
-        return res.status(404).json({ msg: 'Not found' });
+        return res.status(400).json({ msg: 'Not found' });
     }
 
-    await Medico.deleteOne({ '_id': id });
+    await Medico.remo
 
     return res.status(200).json({ msg: 'Success' });
 }
 
 exports.listaMedicos = listaMedicos;
 exports.adicionaMedico = adicionaMedico;
-exports.removeMedico = removeMedico;
+exports.removeDoctor = removeDoctor;
 exports.buscaMedicoPorId = buscaMedicoPorId;
 exports.atualizaMedico = atualizaMedico;
