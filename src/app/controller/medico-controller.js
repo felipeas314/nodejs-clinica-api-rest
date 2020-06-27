@@ -51,23 +51,44 @@ async function findDoctorById(req, res) {
     });
 }
 
-async function atualizaMedico(req, res) {
+async function updateDoctor(req, res) {
+
+    const { id } = req.params;
+
+    // const verifyEmail = await Medico.findOne({ where: { email } });
+
+    // if (verificaEmail) {
+    //     return res.status(200).json({
+    //         message: 'This email already in use',
+    //         status: 'BAD_REQUEST',
+    //         date: new Date()
+    //     })
+    // }
+
+    const doctor = await Medico.update({ ...req.body}, {
+        where: {
+            id
+        }
+    });
+
+    console.log(doctor);
+
     res.json('ok');
 }
 
 async function removeDoctor(req, res) {
     const { id } = req.params;
 
-    const medico = Medico.destroy({ where: { id } });
 
-    if (!medico) {
-        return res.status(400).json({ msg: 'Not found' });
-    }
 
-    await Medico.remo
+    // if (!medico) {
+    //     return res.status(400).json({ msg: 'Not found' });
+    // }
 
-    return res.status(200).json({ 
-        msg: 'Success', 
+    const doctor = Medico.destroy({ where: { id } });
+
+    return res.status(200).json({
+        msg: 'Success',
         date: new Date()
     });
 }
@@ -76,4 +97,4 @@ exports.listaMedicos = listaMedicos;
 exports.adicionaMedico = adicionaMedico;
 exports.removeDoctor = removeDoctor;
 exports.findDoctorById = findDoctorById;
-exports.atualizaMedico = atualizaMedico;
+exports.updateDoctor = updateDoctor;
