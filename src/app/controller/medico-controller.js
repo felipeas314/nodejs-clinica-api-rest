@@ -16,7 +16,8 @@ async function listaMedicos(req, res) {
     res.status(200).json({
         content: medicos.rows,
         status: 'OK',
-        quantity: medicos.count
+        quantity: medicos.count,
+        message: 'List of doctors'
     });
 }
 
@@ -65,7 +66,7 @@ async function updateDoctor(req, res) {
     //     })
     // }
 
-    const doctor = await Medico.update({ ...req.body}, {
+    const doctor = await Medico.update({ ...req.body }, {
         where: {
             id
         }

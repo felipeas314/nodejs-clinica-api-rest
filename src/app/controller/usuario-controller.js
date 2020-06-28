@@ -28,7 +28,7 @@ async function criaUsuario(req, res) {
   })
 }
 
-async function listaUsuarios(req, res) {
+async function listUser(req, res) {
 
   const { page = 1, size = 10 } = req.params;
 
@@ -48,5 +48,26 @@ async function listaUsuarios(req, res) {
 
 }
 
+async function findUserById(req, res) {
+
+  const { id } = req.params;
+
+  const user = await Usuario.findByPk(id);
+
+  if (!user) {
+    return res.status(400).json({
+      status: 'BAD_REQUEST',
+      message: 'User not exists'
+    });
+  }
+
+  res.status(200).json({
+    content: user,
+    status: 'OK',
+    data: new Date()
+  });
+}
+
 exports.criaUsuario = criaUsuario;
-exports.listaUsuarios = listaUsuarios;
+exports.listUser = listUser;
+exports.findUserById = findUserById;
