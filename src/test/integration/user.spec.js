@@ -53,7 +53,7 @@ describe('USER INTEGRATION TEST', () => {
     expect(res.statusCode).to.equal(200);
   });
 
-  it('FIND USER BY ID AND EXPECT STATUS CODD 200 AND CORRECT USET', async () => {
+  it('FIND USER BY ID AND EXPECT STATUS CODE 200 AND CORRECT USER', async () => {
 
     const user = await Usuario.create({
       nome: 'Olivia',
@@ -83,6 +83,71 @@ describe('USER INTEGRATION TEST', () => {
 
     expect(res.statusCode).to.equal(400);
   });
+
+  it('Delete user', async () => {
+
+    const user = await Usuario.create({
+      nome: 'Obiwan',
+      email: 'obiwan@obiwan.com',
+      senha: '123456',
+      role: 'JEDI'
+    })
+
+    const res = await request(App)
+      .delete(`/api/users/${user.id}`);
+
+    expect(res.statusCode).to.equal(200);
+  });
+
+  it('Delete user wrong', async () => {
+
+    const userId = uuid.v4();
+
+    const res = await request(App)
+      .delete(`/api/users/${userId}`);
+
+    expect(res.statusCode).to.equal(400);
+  });
+
+  it('Update user', async () => {
+
+    const userCreate = await Usuario.create({
+      nome: 'Anakin',
+      email: 'anakin@anakin.com',
+      senha: '123456',
+      role: 'PADAWAN'
+    })
+
+    const userEdit = {
+      nome: 'Anakin editado',
+      email: 'anakin@anakin.com editado',
+      senha: '123456 editado',
+      role: 'PADAWAN editado'
+    }
+
+    const res = await request(App)
+      .put(`/api/users/${userCreate.id}`)
+      .send(userEdit);
+
+    const user = await Usuario.findByPk(userCreate.id);
+
+    expect(res.statusCode).to.equal(200);
+    expect(user.nome).to.equal(userEdit.nome);
+    expect(user.email).to.equal(userEdit.email);
+    expect(user.senha).to.equal(userEdit.senha);
+    expect(user.role).to.equal(userEdit.role);
+  });
+
+  it('Update user wrong', async () => {
+
+    const userId = uuid.v4();
+
+    const res = await request(App)
+      .put(`/api/users/${userId}`);
+
+    expect(res.statusCode).to.equal(400);
+  });
+
 
   after(async () => {
     await Usuario.destroy({ where: {} });

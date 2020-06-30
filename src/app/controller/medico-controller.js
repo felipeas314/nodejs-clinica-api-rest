@@ -74,7 +74,7 @@ async function updateDoctor(req, res) {
 
     console.log(doctor);
 
-    res.json('ok');
+    res.status(200).json('ok');
 }
 
 async function removeDoctor(req, res) {
@@ -89,7 +89,7 @@ async function removeDoctor(req, res) {
     const doctor = Medico.destroy({ where: { id } });
 
     return res.status(200).json({
-        msg: 'Success',
+        message: 'Success',
         date: new Date()
     });
 }

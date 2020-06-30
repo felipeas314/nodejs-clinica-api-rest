@@ -68,6 +68,51 @@ async function findUserById(req, res) {
   });
 }
 
+async function deleteUser(req, res) {
+
+  const { id } = req.params;
+
+  const userExists = await Usuario.findByPk(id);
+
+  if (!userExists) {
+    return res.status(400).json({
+      status: 'BAD_REQUEST',
+      message: 'User not exists'
+    });
+  }
+
+  await Usuario.destroy({ where: { id } });
+
+  return res.status(200).json({
+    message: 'Success',
+    date: new Date()
+  })
+}
+
+async function updateUser(req, res) {
+
+  const { id } = req.params;
+
+  const userExists = await Usuario.findByPk(id);
+
+  if (!userExists) {
+    return res.status(400).json({
+      status: 'BAD_REQUEST',
+      message: 'User not existss'
+    })
+  }
+
+  const user = await Usuario.update({ ...req.body }, {
+    where: {
+      id
+    }
+  });
+
+  res.status(200).json('ok');
+}
+
 exports.criaUsuario = criaUsuario;
 exports.listUser = listUser;
 exports.findUserById = findUserById;
+exports.deleteUser = deleteUser;
+exports.updateUser = updateUser;
