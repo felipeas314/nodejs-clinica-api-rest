@@ -6,6 +6,7 @@ const { listaPacientes, adicionaPaciente } = require("./app/controller/paciente-
 const { adicionaMedico, listaMedicos, removeDoctor, findDoctorById, updateDoctor } = require('./app/controller/medico-controller');
 const { marcarConsulta, listaTodasAsConsultas } = require('./app/controller/consulta-controller');
 const { criaUsuario, listUser, findUserById, deleteUser, updateUser } = require('./app/controller/usuario-controller');
+const { login } = require('./app/controller/auth-controller');
 
 routes.get('/health', (req, res) => {
   res.status(200).json({
@@ -15,7 +16,7 @@ routes.get('/health', (req, res) => {
 });
 
 routes.get("/doctors", listaMedicos);
-
+routes.post('/login',login);
 
 //Precisa logar no sistema
 routes.get("/pacientes", listaPacientes);
