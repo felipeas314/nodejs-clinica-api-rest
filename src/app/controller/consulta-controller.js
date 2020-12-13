@@ -24,5 +24,13 @@ async function listaTodasAsConsultas(req, res) {
   })
 }
 
+async function cancelarConsulta(req,res) {
+
+}
+
+async function buscaConsultaPorMedico(req,res){
+  
+}
+
 exports.marcarConsulta = marcarConsulta;
 exports.listaTodasAsConsultas = listaTodasAsConsultas;

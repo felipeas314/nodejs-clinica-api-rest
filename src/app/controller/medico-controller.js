@@ -94,6 +94,10 @@ async function removeDoctor(req, res) {
     });
 }
 
+async function buscaMedicoPorEspecialidade(req,res) {
+    
+}
+
 exports.listaMedicos = listaMedicos;
 exports.adicionaMedico = adicionaMedico;
 exports.removeDoctor = removeDoctor;
