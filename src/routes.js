@@ -2,6 +2,7 @@ const { Router } = require('express');
 
 const routes = new Router();
 
+const { logMiddleware,tokenMiddleware,validationErrorsMiddleware } = require('./app/middlewares');
 const { listaPacientes, adicionaPaciente } = require("./app/controller/paciente-controller");
 const { adicionaMedico, listaMedicos, removeDoctor, findDoctorById, updateDoctor } = require('./app/controller/medico-controller');
 const { marcarConsulta, listaTodasAsConsultas } = require('./app/controller/consulta-controller');
@@ -14,6 +15,9 @@ routes.get('/health', (req, res) => {
     date: new Date()
   });
 });
+
+routes.use(logMiddleware);
+routes.use(tokenMiddleware);
 
 routes.get("/doctors", listaMedicos);
 routes.post('/login',login);
@@ -40,6 +44,6 @@ routes.put('/users/:id', updateUser);
 routes.delete('/doctors/:id', removeDoctor)
 routes.delete('/users/:id', deleteUser);
 
-
+routes.use(validationErrorsMiddleware);
 
 module.exports = routes;

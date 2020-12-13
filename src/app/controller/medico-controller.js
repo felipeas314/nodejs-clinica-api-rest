@@ -95,8 +95,18 @@ async function removeDoctor(req, res) {
 }
 
 async function buscaMedicoPorEspecialidade(req,res) {
+
+}
+
+async function buscaMedicoComMaisConsultas(req,res){
+
+}
+
+async function buscaMedicoComMenosConsultas(req,res){
     
 }
+
+
 
 exports.listaMedicos = listaMedicos;
 exports.adicionaMedico = adicionaMedico;
