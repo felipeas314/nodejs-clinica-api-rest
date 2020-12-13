@@ -2,3 +2,7 @@ server:
     port: 4006
 database:
     url: ""
+email:
+    service:
+    email:
+    password:

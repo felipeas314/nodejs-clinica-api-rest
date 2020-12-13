@@ -1,0 +1,36 @@
+stages:
+  - build
+  - test
+
+cache:
+  paths:
+    - node_modules/
+
+build api:
+  stage: build
+  script:
+    - npm install
+    - ls
+  tags:
+  - cicd-do
+  # artifacts:
+  #   paths:
+  #     - ./
+
+teste build api:
+  stage: build
+  script:
+    - echo testando
+    - ls
+
+testes de interacao:
+  stage: test
+  script:
+    - echo testando integracao
+    - ls
+
+testes de interacaonovo:
+  stage: test
+  script:
+    - ls
+    - npm test
