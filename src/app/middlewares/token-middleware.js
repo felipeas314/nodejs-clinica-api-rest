@@ -1,7 +1,6 @@
 const { verifyToken } = require('../services/token-service');
 
 module.exports = async (req, res, next) => {
-  console.log('Middleware de token');
 
   let authorizationHeader = req.headers['authorization'];
   

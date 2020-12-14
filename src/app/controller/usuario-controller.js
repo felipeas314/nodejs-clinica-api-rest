@@ -1,9 +1,11 @@
-const { Usuario } = require('../model/usuario-model');
+const { Usuario, UsuarioValidation } = require('../model/usuario-model');
 const bcrypt = require('bcrypt');
 
 async function criaUsuario(req, res) {
 
   const { email } = req.body;
+
+  await UsuarioValidation.validate(req.body);
 
   const verificaEmail = await Usuario.findOne({
     where: {

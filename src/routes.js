@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const asyncHandler = require('express-async-handler')
 
 const routes = new Router();
 
@@ -17,10 +18,11 @@ routes.get('/health', (req, res) => {
 });
 
 routes.use(logMiddleware);
-routes.use(tokenMiddleware);
 
 routes.get("/doctors", listaMedicos);
 routes.post('/login',login);
+
+routes.use(tokenMiddleware);
 
 //Precisa logar no sistema
 routes.get("/pacientes", listaPacientes);
@@ -35,7 +37,7 @@ routes.get('/users/:id', findUserById);
 routes.post("/pacientes", adicionaPaciente);
 routes.post("/doctors", adicionaMedico);
 routes.post("/appointments", marcarConsulta);
-routes.post('/users', criaUsuario);
+routes.post('/users', asyncHandler(criaUsuario));
 
 
 routes.put('/doctors/:id', updateDoctor);

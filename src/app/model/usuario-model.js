@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const yup = require('yup');
 const Model = Sequelize.Model;
 
 const connection = require('../database/postgresql');
@@ -31,5 +32,12 @@ Usuario.init(
     modelName: 'usuario'
   }
 )
+let usuarioValidation = yup.object().shape({
+  nome: yup.string().required(),
+  email: yup.string().required(),
+  senha: yup.string().required(),
+  role: yup.string().required()
+});
 
 exports.Usuario = Usuario;
+exports.UsuarioValidation = usuarioValidation;
