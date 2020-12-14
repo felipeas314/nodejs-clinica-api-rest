@@ -25,8 +25,45 @@ async function listaTodasAsConsultas(req, res) {
 }
 
 async function cancelarConsulta(req,res) {
+  const { id } = req.params;
 
+  await Consulta.update(
+    {
+      desmarcou: true
+    },
+    {
+      where: {
+        id
+      }
+    })
+
+    res.status(200).json({
+      message:'Consulta cancelado com sucesso',
+      status: 'OK',
+      date: new Date()
+    })
 }
+
+async function confirmarConsulta(req,res) {
+  const { id } = req.params;
+
+  await Consulta.update(
+    {
+      confirmou: true
+    },
+    {
+      where: {
+        id
+      }
+    })
+
+    res.status(200).json({
+      message:'Consulta confirmada com sucesso',
+      status: 'OK',
+      date: new Date()
+    })
+}
+
 
 async function buscaConsultaPorMedico(req,res){
   
@@ -34,3 +71,5 @@ async function buscaConsultaPorMedico(req,res){
 
 exports.marcarConsulta = marcarConsulta;
 exports.listaTodasAsConsultas = listaTodasAsConsultas;
+exports.cancelarConsulta = cancelarConsulta;
+exports.confirmarConsulta = confirmarConsulta;
