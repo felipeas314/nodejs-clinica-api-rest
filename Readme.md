@@ -3,3 +3,8 @@
 <h4 align="center"> 
 	🚧  Em construção...  🚧
 </h4>
+
+### Features
+- [x] Crud de usuário
+- [x] Crud de paciente
+- [ ] Cancelar consulta
