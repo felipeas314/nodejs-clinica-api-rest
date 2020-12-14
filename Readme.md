@@ -8,3 +8,11 @@
 - [x] Crud de usuário
 - [x] Crud de paciente
 - [ ] Cancelar consulta
+
+### 🛠 Tecnologias
+
+As seguintes ferramentas foram usadas na construção do projeto:
+
+- [Express]
+- [Sequelize]
+- [Yup]
