@@ -1,8 +1,16 @@
 server:
     port: 4006
 database:
-    url: ""
+    postgres:
+        user: ""
+        password: ""
+        database_name: ""
+        ip: ""
+    redis:
 email:
     service:
     email:
     password:
+jwt:
+    secret: 
+    time:
