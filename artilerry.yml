@@ -1,0 +1,14 @@
+config:
+  target: "http://localhost:4006/api/v1"
+  phases:
+    - duration: 30
+      arrivalRate: 5
+      name: Primeiro teste
+    - duration: 30
+      arrivalRate: 10
+      name: Segundo teste
+scenarios:
+  - name: listando os usuários
+    flow:
+    - get:
+        url: "/users"
