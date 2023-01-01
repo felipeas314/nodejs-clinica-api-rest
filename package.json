@@ -12,7 +12,7 @@
   "description": "",
   "dependencies": {
     "bcrypt": "^5.0.0",
-    "config": "^3.2.2",
+    "config": "^3.3.8",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
